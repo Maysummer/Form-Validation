@@ -42,15 +42,15 @@ const Register = () => {
 
   useEffect(() => {
     //setting the focus on username input when component loads
-    userRef.current.focus()
-  }, [])
-  
+    userRef.current.focus();
+  }, []);
+
   useEffect(() => {
     const isUserNameValid = USER_REGEX.test(user);
     console.log(isUserNameValid);
     console.log(user);
     setValidName(isUserNameValid);
-  }, [user])
+  }, [user]);
 
   useEffect(() => {
     const isPasswordValid = PWD_REGEX.test(pwd);
@@ -59,14 +59,17 @@ const Register = () => {
     setValidPwd(isPasswordValid);
     const arePasswordsMatched = pwd === matchPwd;
     setValidMatch(arePasswordsMatched);
-  }, [pwd, matchPwd])
-  
-  useEffect(()=> {
+  }, [pwd, matchPwd]);
+
+  useEffect(() => {
     //clear error message when user changes anyy info (they are trying to rectify)
     setErrMsg('');
-  }, [user, pwd, matchPwd])
+  }, [user, pwd, matchPwd]);
 
-  return <div>Register</div>;
+  return (<section>
+    <p ref={userRef} className={errMsg ? 'errMsg' : 'offscreen'} aria-live='assertive'>{errMsg}</p>
+    <h1>Register</h1>
+  </section>);
 };
 
 export default Register;
