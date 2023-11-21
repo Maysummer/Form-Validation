@@ -39,7 +39,33 @@ const Register = () => {
 
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    //setting the focus on username input when component loads
+    userRef.current.focus()
+  }, [])
   
+  useEffect(() => {
+    const isUserNameValid = USER_REGEX.test(user);
+    console.log(isUserNameValid);
+    console.log(user);
+    setValidName(isUserNameValid);
+  }, [user])
+
+  useEffect(() => {
+    const isPasswordValid = PWD_REGEX.test(pwd);
+    console.log(isPasswordValid);
+    console.log(pwd);
+    setValidPwd(isPasswordValid);
+    const arePasswordsMatched = pwd === matchPwd;
+    setValidMatch(arePasswordsMatched);
+  }, [pwd, matchPwd])
+  
+  useEffect(()=> {
+    //clear error message when user changes anyy info (they are trying to rectify)
+    setErrMsg('');
+  }, [user, pwd, matchPwd])
+
   return <div>Register</div>;
 };
 
