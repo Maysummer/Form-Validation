@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 /*validate username:
 must start with a lower or uppercase letter
 then must be followed by 3-23 characters of lower or uppercase letters, digits, hyphens or underscores
-total of 4-24 charachters
+total of 4-24 characters
 */
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 /*validate password:
@@ -108,6 +108,41 @@ const Register = () => {
           4 to 24 characters. <br />
           Must begin with a letter. <br />
           Letters, numbers, underscores, hyphens allowed.
+        </p>
+
+        <label htmlFor="password">
+          Password:
+          <span className={validPwd ? 'valid' : 'hide'}>
+            <FontAwesomeIcon icon={faCheck} />
+          </span>
+          <span className={validPwd || !pwd ? 'hide' : 'invalid'}>
+            <FontAwesomeIcon icon={faTimes} />
+          </span>
+        </label>
+        <input
+          type="password"
+          id="password"
+          required
+          aria-invalid={validPwd ? 'false' : 'true'}
+          aria-describedby="pwdnote"
+          onFocus={() => setPwdFocus(true)}
+          onBlur={() => setPwdFocus(false)}
+          onChange={(e) => setPwd(e.target.value)}
+        />
+        <p
+          id="pwdnote"
+          className={pwdFocus && !validPwd ? 'instructions' : 'offscreen'}
+        >
+          <FontAwesomeIcon icon={faInfoCircle} />
+          8 to 24 characters. <br />
+          Must include uppercase and lowercase letters, a number and a special
+          character. <br />
+          Allowed special characters:{' '}
+          <span aria-label="exclamation mark">!</span>{' '}
+          <span aria-label="at symbol">@</span>
+          <span aria-label='hash tag'>#</span>
+          <span aria-label='dollar sign'>$</span>
+          <span aria-label='percent'>%</span>
         </p>
       </form>
     </section>
