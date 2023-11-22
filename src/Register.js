@@ -140,9 +140,9 @@ const Register = () => {
           Allowed special characters:{' '}
           <span aria-label="exclamation mark">!</span>{' '}
           <span aria-label="at symbol">@</span>
-          <span aria-label='hash tag'>#</span>
-          <span aria-label='dollar sign'>$</span>
-          <span aria-label='percent'>%</span>
+          <span aria-label="hash tag">#</span>
+          <span aria-label="dollar sign">$</span>
+          <span aria-label="percent">%</span>
         </p>
 
         <label htmlFor="confirm_pwd">
@@ -166,16 +166,26 @@ const Register = () => {
         />
         <p
           id="confirmnote"
-          className={
-            matchFocus && !validMatch ? 'instructions' : 'offscreen'
-          }
+          className={matchFocus && !validMatch ? 'instructions' : 'offscreen'}
         >
           <FontAwesomeIcon icon={faInfoCircle} />
           Must match the first password input field .
         </p>
 
-        <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign up</button>
+        <button
+          disabled={!validName || !validPwd || !validMatch ? true : false}
+        >
+          Sign up
+        </button>
       </form>
+      <p>
+        Already registered?
+        <br />
+        <span className="line">
+          {/*'router link goes here'*/}
+          <a href="#">Sign In</a>
+        </span>
+      </p>
     </section>
   );
 };
