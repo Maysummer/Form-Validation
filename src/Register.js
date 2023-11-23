@@ -6,6 +6,7 @@ import {
   faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from './api/axios';
 
 /*validate username:
 must start with a lower or uppercase letter
