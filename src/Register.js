@@ -66,6 +66,17 @@ const Register = () => {
     setErrMsg('');
   }, [user, pwd, matchPwd]);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    //if button is enabled by JS hack (inspecting elements)
+    const v1 = USER_REGEX.test(user);
+    const v2 = PWD_REGEX.test(pwd);
+    if (!v1 || !v2){
+      setErrMsg("Invalid entry");
+      return;
+    }
+  };
+
   return (
     <section>
       <p
@@ -76,7 +87,7 @@ const Register = () => {
         {errMsg}
       </p>
       <h1>Register</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="username">
           Username:{' '}
           <span className={validName ? 'valid' : 'hide'}>
